@@ -69,6 +69,58 @@ void insert_end(int value)
     }
     
 }
+void delete_beg()
+{
+    if(head== NULL)
+    {
+    printf("List is empty\n");
+    }
+    else
+    {
+        ptr=head;
+        head= head->next;
+        ptr->next=NULL;
+        free(ptr);
+    }
+}
+void delete_nposition(int ele)
+{
+    if(head== NULL)
+    {
+        printf("List is empty\n");
+    }
+    else
+    {
+        struct Node *p;
+        ptr=head;
+        while(ptr->data!=ele)
+        {
+            p=ptr;
+            ptr=ptr->next;
+        }
+            p->next=ptr->next;
+            free(ptr);
+    }        
+}
+void delete_end()
+{
+    if(head==NULL)
+    {
+        printf("List is empty\n");
+    }
+    else
+    {
+        struct Node *p;
+        ptr= head;
+        while(ptr->next!=NULL)
+        {
+            p=ptr;
+            p->next=NULL;
+            free(ptr);
+        }
+    }
+    
+}
 void display()
 {
     if(head== NULL)
@@ -93,8 +145,11 @@ void main()
     printf("1.Insert at begining\n");
     printf("2.Insert at nposition\n");
     printf("3.Insert at end\n");
-    printf("4.display\n");
-    printf("5.exit\n");
+    printf("4.Delete at begining\n");
+    printf("5. Delete at nposition\n");
+    printf("6.Delelte at end\n");
+    printf("7.display\n");
+    printf("8.exit\n");
     while(1)
     {
         printf("Enter the choice:");
@@ -127,11 +182,31 @@ void main()
                 display();
                 break;
             }
-            case 4:
+             case 4:
+            {
+                delete_beg();
+                display();
+                break;
+            }
+            case 5:
+            {
+                printf("Entere element you want to delete:\n");
+                scanf("%d",&ele);
+                delete_nposition(ele);
+                display();
+                break;
+            }
+            case 6:
+            {
+                delete_end();
+                display();
+                break;
+            }
+            case 7:
             {
                 display();
             }
-            case 5:
+            case 8:
             {
                 exit(0);
             }
